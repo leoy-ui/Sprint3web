@@ -1,7 +1,7 @@
 # Jovi Câmera
 
 Vitrine em React dos modos de captura e conceitos de layout de interface
-para o sistema de câmera do celular Jovi (projeto acadêmico, Sprint 3).
+para o sistema de câmera do celular Jovi (projeto, Sprint 3).
 
 ## Tecnologias utilizadas
 
@@ -10,15 +10,6 @@ para o sistema de câmera do celular Jovi (projeto acadêmico, Sprint 3).
 - JavaScript (ES6+)
 - CSS3 (sem frameworks de UI)
 - localStorage (persistência da cor de tema e do último modo escolhido)
-
-## Como instalar as dependências
-
-Com [Node.js](https://nodejs.org) instalado (recomendado: versão 18 ou
-superior), na raiz do projeto rode:
-
-```bash
-npm install
-```
 
 ## Como executar o projeto
 
@@ -78,8 +69,5 @@ src/
 
 ## Link do repositório Git
 
-[SUBSTITUA pelo link do seu repositório no GitHub]
+[https://github.com/leoy-ui/Sprint3web.git]
 
-## Link do Deploy na Vercel
-
-[SUBSTITUA pelo link gerado após o deploy na Vercel]
