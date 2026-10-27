@@ -1,3 +1,23 @@
+@import "tailwindcss";
+
+/* Expõe as variáveis como classes do Tailwind Css(bg-acento, text-texto-fraco, font-mono...) */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-panel: var(--panel);
+  --color-panel-alto: var(--panel-alto);
+  --color-linha: var(--linha);
+  --color-texto: var(--texto);
+  --color-texto-fraco: var(--texto-fraco);
+  --color-acento: var(--acento);
+  --color-acento-fraco: var(--acento-fraco);
+
+  --font-display: var(--fonte-display);
+  --font-corpo: var(--fonte-corpo);
+  --font-mono: var(--fonte-mono);
+
+  --radius-card: var(--raio);
+}
+
 :root {
   --ink: #121210;
   --panel: #1b1b17;
@@ -92,15 +112,19 @@ button {
 .aperture-blade:nth-child(2) {
   animation-delay: 0.04s;
 }
+
 .aperture-blade:nth-child(3) {
   animation-delay: 0.08s;
 }
+
 .aperture-blade:nth-child(4) {
   animation-delay: 0.12s;
 }
+
 .aperture-blade:nth-child(5) {
   animation-delay: 0.16s;
 }
+
 .aperture-blade:nth-child(6) {
   animation-delay: 0.2s;
 }
@@ -110,6 +134,7 @@ button {
     transform: scale(1.55);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 0.92;
