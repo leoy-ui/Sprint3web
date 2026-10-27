@@ -91,8 +91,6 @@ button {
     transition-duration: 0.001ms !important;
   }
 }
-
-/* --- Logo: íris de diafragma --- */
 .aperture-logo {
   overflow: visible;
 }
@@ -145,12 +143,12 @@ button {
   animation-duration: 2.2s;
 }
 @layer base {
-
   ::selection {
-    @apply bg-acento text-ink;
+    background-color: var(--acento);
+    color: var(--ink);
   }
 
   html {
-    @apply scroll-smooth;
+    scroll-behavior: smooth;
   }
 }

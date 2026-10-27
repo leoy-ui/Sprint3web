@@ -1,6 +1,8 @@
+
 @reference "./index.css";
 
 @layer components {
+  
   .app {
     min-height: 100vh;
     display: flex;
@@ -63,7 +65,7 @@
     font-size: 0.92rem;
     padding: 8px 12px;
     border-radius: 999px;
-    transition: color 0.15s, background 0.15s;
+    transition: color 0.15s, background-color 0.15s;
   }
 
   .nav-link:hover {
@@ -88,6 +90,12 @@
     border: 2px solid transparent;
     background: var(--swatch-hex);
     padding: 0;
+    cursor: pointer;
+    transition: transform 150ms;
+  }
+
+  .swatch:hover {
+    transform: scale(1.1);
   }
 
   .swatch-ativo {
@@ -139,6 +147,10 @@
     margin-bottom: 32px;
   }
 
+  .hero-texto {
+    min-width: 0;
+  }
+
   .hero-texto h1 {
     font-size: clamp(2rem, 4vw, 2.9rem);
   }
@@ -152,6 +164,7 @@
 
   .hero-visual {
     flex-shrink: 0;
+    max-width: 100%;
   }
 
   .faixa-numeros {
@@ -183,11 +196,21 @@
     font-weight: 600;
     padding: 11px 20px;
     border-radius: 999px;
-    transition: transform 0.15s;
+    cursor: pointer;
+    transition: transform 150ms;
   }
 
   .botao-principal:hover {
     transform: translateY(-1px);
+  }
+
+  .botao-principal:active {
+    transform: scale(0.95);
+  }
+
+  .botao-principal:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   .botao-fantasma {
@@ -196,11 +219,20 @@
     color: var(--texto);
     padding: 11px 20px;
     border-radius: 999px;
-    transition: border-color 0.15s;
+    cursor: pointer;
+    transition:
+      border-color 150ms,
+      background-color 150ms,
+      transform 150ms;
   }
 
   .botao-fantasma:hover {
     border-color: var(--acento);
+    background-color: var(--panel);
+  }
+
+  .botao-fantasma:active {
+    transform: scale(0.95);
   }
 
   .grid-cards {
@@ -217,7 +249,16 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: border-color 0.15s;
+    min-width: 0;
+    transition:
+      border-color 150ms,
+      transform 150ms,
+      box-shadow 150ms;
+  }
+
+  .card-modo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 30%);
   }
 
   .card-modo-ativo {
@@ -229,6 +270,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     margin-bottom: 8px;
   }
 
@@ -256,12 +298,13 @@
 
   .specs {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px 8px;
     margin: 0 0 18px;
     padding: 12px;
     background: var(--panel-alto);
     border-radius: 10px;
+    min-width: 0;
   }
 
   .specs dt {
@@ -269,12 +312,14 @@
     color: var(--texto-fraco);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    overflow-wrap: anywhere;
   }
 
   .specs dd {
     margin: 0;
     font-family: var(--fonte-mono);
     font-size: 0.85rem;
+    overflow-wrap: anywhere;
   }
 
   .card-modo-acoes {
@@ -286,6 +331,7 @@
   .card-modo-acoes .botao-principal,
   .card-modo-acoes .botao-fantasma {
     flex: 1;
+    min-width: 0;
     padding: 9px 12px;
     font-size: 0.85rem;
     text-align: center;
@@ -304,6 +350,15 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    min-width: 0;
+    transition:
+      border-color 150ms,
+      transform 150ms;
+  }
+
+  .card-layout:hover {
+    transform: translateY(-2px);
+    border-color: var(--acento);
   }
 
   .mockup-telefone {
@@ -314,6 +369,7 @@
     border-radius: 26px;
     padding: 8px;
     margin-bottom: 16px;
+    flex-shrink: 0;
   }
 
   .mockup-tela {
@@ -423,6 +479,8 @@
     margin: 0;
   }
 
+  /* Página Sobre */
+
   .pagina-sobre {
     max-width: 640px;
   }
@@ -445,60 +503,158 @@
     color: var(--texto-fraco);
   }
 
-  /* --- Responsivo --- */
   @media (max-width: 720px) {
     .cabecalho {
       flex-wrap: wrap;
       gap: 12px;
+      padding: 14px 16px;
     }
 
     .navegacao {
       order: 3;
       width: 100%;
       justify-content: space-between;
+      margin-right: 0;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 8px 10px;
+      font-size: 0.85rem;
+    }
+
+    .conteudo {
+      padding: 24px 16px 64px;
     }
 
     .hero {
       flex-direction: column;
       text-align: center;
+      gap: 24px;
+    }
+
+    .hero-texto {
+      width: 100%;
     }
 
     .hero-acoes {
       justify-content: center;
     }
 
+    .hero-visual {
+      max-width: 100%;
+    }
+
     .faixa-numeros {
       justify-content: center;
+      gap: 24px;
+    }
+
+    .grid-cards,
+    .grid-cards--layouts {
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 240px), 1fr)
+      );
     }
   }
 
-  .botao-principal {
-    @apply transition-[transform, scale] duration-150 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
-  }
-
-  .botao-fantasma {
-    @apply transition-[border-color, background-color, scale] duration-150 hover:bg-panel active:scale-95;
-  }
-
-  .nav-link:not(.nav-link-ativo):hover {
-    @apply bg-panel-alto;
-  }
-
-  .swatch {
-    @apply cursor-pointer transition-transform duration-150 hover:scale-110;
-  }
-
-  .card-modo {
-    @apply transition-[border-color, transform, box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/30;
-  }
-
-  .card-layout {
-    @apply transition-[border-color, transform] duration-150 hover:-translate-y-0.5 hover:border-acento;
-  }
-
-  @media (max-width: 720px) {
+  @media (max-width: 480px) {
     .conteudo {
-      @apply px-4 pt-6 pb-16;
+      padding: 24px 16px 48px;
+    }
+
+    .cabecalho-pagina {
+      margin-bottom: 24px;
+    }
+
+    .cabecalho-pagina h2 {
+      font-size: 1.5rem;
+    }
+
+    .hero {
+      padding: 16px 0 32px;
+    }
+
+    .hero-texto h1 {
+      font-size: clamp(1.8rem, 8vw, 2.4rem);
+    }
+
+    .hero-acoes {
+      gap: 10px;
+    }
+
+    .hero-acoes button {
+      max-width: 100%;
+    }
+
+    .faixa-numeros {
+      gap: 20px;
+    }
+
+    .faixa-numeros strong {
+      font-size: 1.5rem;
+    }
+
+    .grid-cards,
+    .grid-cards--layouts {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .card-modo,
+    .card-layout {
+      padding: 16px;
+    }
+
+    .specs {
+      gap: 10px 6px;
+      padding: 10px;
+    }
+
+    .specs dt {
+      font-size: 0.6rem;
+    }
+
+    .specs dd {
+      font-size: 0.75rem;
+    }
+
+    .card-modo-acoes {
+      flex-wrap: wrap;
+    }
+
+    .card-modo-acoes .botao-principal,
+    .card-modo-acoes .botao-fantasma {
+      padding: 9px 8px;
+      font-size: 0.8rem;
+    }
+
+    .rodape {
+      padding: 16px;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pagina {
+      animation: none;
+    }
+
+    .botao-principal,
+    .botao-fantasma,
+    .swatch,
+    .card-modo,
+    .card-layout {
+      transition: none;
+    }
+
+    .botao-principal:hover,
+    .card-modo:hover,
+    .card-layout:hover,
+    .swatch:hover {
+      transform: none;
     }
   }
 }
