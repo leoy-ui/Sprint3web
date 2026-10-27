@@ -144,3 +144,13 @@ button {
 .hero-visual .aperture-logo .aperture-blade {
   animation-duration: 2.2s;
 }
+@layer base {
+
+  ::selection {
+    @apply bg-acento text-ink;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
