@@ -1,5 +1,3 @@
-
-jsx
 import { eyebrow, cabecalhoPagina, tituloPagina } from '../../utils/estilos.js'
 
 function Sobre() {
