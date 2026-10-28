@@ -658,3 +658,48 @@
     }
   }
 }
+
+/* --- Responsividade: celular, iPad e computador (página ocupando toda a tela) --- */
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.app {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.conteudo {
+  width: 100%;
+  max-width: none;
+}
+
+/* Celular */
+@media (max-width: 767px) {
+  .conteudo { padding: 24px 16px 56px; }
+  .cabecalho, .rodape { padding-left: 16px; padding-right: 16px; }
+  .grid-cards, .grid-cards--layouts { grid-template-columns: 1fr; }
+  .hero { flex-direction: column; text-align: center; gap: 24px; }
+  .hero-visual { max-width: 60%; }
+}
+
+/* iPad / tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .conteudo { padding: 40px 32px 72px; }
+  .cabecalho, .rodape { padding-left: 32px; padding-right: 32px; }
+  .grid-cards { grid-template-columns: repeat(2, 1fr); }
+  .grid-cards--layouts { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Computador */
+@media (min-width: 1200px) {
+  .conteudo { padding: 56px 64px 96px; }
+  .cabecalho, .rodape { padding-left: 64px; padding-right: 64px; }
+  .grid-cards { grid-template-columns: repeat(3, 1fr); }
+  .grid-cards--layouts { grid-template-columns: repeat(4, 1fr); }
+  .hero-texto h1 { font-size: 3.4rem; }
+}
