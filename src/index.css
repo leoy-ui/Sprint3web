@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Expõe as variáveis como classes do Tailwind Css(bg-acento, text-texto-fraco, font-mono...) */
+/* Expõe as variáveis como classes do Tailwind (bg-acento, text-texto-fraco, font-mono...) */
 @theme inline {
   --color-ink: var(--ink);
   --color-panel: var(--panel);
@@ -16,6 +16,22 @@
   --font-mono: var(--fonte-mono);
 
   --radius-card: var(--raio);
+}
+
+/* Animação de entrada das páginas (classe animate-entrar) */
+@theme {
+  --animate-entrar: entrar 0.4s ease both;
+
+  @keyframes entrar {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 :root {
@@ -43,46 +59,51 @@ html[data-tema='magenta'] {
   --acento-fraco: #ff6f9c33;
 }
 
-* {
-  box-sizing: border-box;
-}
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+  body {
+    background: var(--ink);
+    color: var(--texto);
+    font-family: var(--fonte-corpo);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
 
-body {
-  background: var(--ink);
-  color: var(--texto);
-  font-family: var(--fonte-corpo);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
+  h1,
+  h2,
+  h3 {
+    font-family: var(--fonte-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4em;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: var(--fonte-display);
-  letter-spacing: -0.01em;
-  margin: 0 0 0.4em;
-}
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.17em; }
 
-p {
-  margin: 0 0 1em;
-  color: var(--texto-fraco);
-  max-width: 60ch;
-}
+  p {
+    margin: 0 0 1em;
+    color: var(--texto-fraco);
+    max-width: 60ch;
+  }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--acento);
-  outline-offset: 2px;
+  :focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    @apply bg-acento text-ink;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -91,6 +112,8 @@ button {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* --- Logo: íris de diafragma --- */
 .aperture-logo {
   overflow: visible;
 }
@@ -107,32 +130,17 @@ button {
   animation: abrir-lamina 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.aperture-blade:nth-child(2) {
-  animation-delay: 0.04s;
-}
-
-.aperture-blade:nth-child(3) {
-  animation-delay: 0.08s;
-}
-
-.aperture-blade:nth-child(4) {
-  animation-delay: 0.12s;
-}
-
-.aperture-blade:nth-child(5) {
-  animation-delay: 0.16s;
-}
-
-.aperture-blade:nth-child(6) {
-  animation-delay: 0.2s;
-}
+.aperture-blade:nth-child(2) { animation-delay: 0.04s; }
+.aperture-blade:nth-child(3) { animation-delay: 0.08s; }
+.aperture-blade:nth-child(4) { animation-delay: 0.12s; }
+.aperture-blade:nth-child(5) { animation-delay: 0.16s; }
+.aperture-blade:nth-child(6) { animation-delay: 0.2s; }
 
 @keyframes abrir-lamina {
   from {
     transform: scale(1.55);
     opacity: 0;
   }
-
   to {
     transform: scale(1);
     opacity: 0.92;
@@ -141,14 +149,4 @@ button {
 
 .hero-visual .aperture-logo .aperture-blade {
   animation-duration: 2.2s;
-}
-@layer base {
-  ::selection {
-    background-color: var(--acento);
-    color: var(--ink);
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
 }

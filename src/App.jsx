@@ -5,7 +5,6 @@ import Home from './components/pages/Home.jsx'
 import Modos from './components/pages/Modos.jsx'
 import Layouts from './components/pages/Layouts.jsx'
 import Sobre from './components/pages/Sobre.jsx'
-import './App.css'
 
 const CHAVE_COR = 'jovi_cor_tema'
 const CHAVE_MODO = 'jovi_ultimo_modo'
@@ -51,18 +50,18 @@ function App() {
     }
   }
 
-  return (
-    <div className="app">
+    return (
+    <div className="flex min-h-dvh w-full flex-col">
       <Header
         paginaAtual={paginaAtual}
         aoNavegar={setPaginaAtual}
         corTema={corTema}
         aoMudarCor={setCorTema}
       />
-      <main className="conteudo">{renderizarPagina()}</main>
+      <main className="mx-auto w-full flex-1 px-4 pt-6 pb-14 md:px-8 md:pt-10 md:pb-[72px] xl:px-16 xl:pt-14 xl:pb-24">
+        {renderizarPagina()}
+      </main>
       <Footer />
     </div>
   )
 }
-
-export default App
