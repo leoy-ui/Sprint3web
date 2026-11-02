@@ -49,6 +49,7 @@ cd Sprint3web
 
 ```bash
 npm install
+npm install -D @tailwindcss/vite
 ```
 
 Isso instala React, Vite, Tailwind CSS e o plugin do Tailwind para o Vite, todos
